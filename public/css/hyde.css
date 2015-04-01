@@ -34,7 +34,7 @@
 html {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   cursor: default
-  
+
 }
 @media (min-width: 48em) {
   html {
@@ -45,6 +45,12 @@ html {
   html {
     font-size: 20px;
   }
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 a:hover {
@@ -107,6 +113,15 @@ a.sidebar-nav-item:focus {
   font-weight: bold;
   color: #fff;
 }
+
+.project-header > h2 {
+  float: left;
+}
+
+.project-header > h3 {
+  float: right;
+}
+
 
 label[for="projects"] {
   color: #fff;
