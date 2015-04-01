@@ -1195,6 +1195,8 @@
             var slide = value[1];
 
             if(section){  //if theres any #
+                $('.sidebar-nav-item').removeClass('active');
+                $('[href="#' + section + '"]').addClass('active');
                 scrollPageAndSlide(section, slide);
             }
         }
@@ -1208,6 +1210,10 @@
                 var value =  window.location.hash.replace('#', '').split('/');
                 var section = value[0];
                 var slide = value[1];
+
+                // add active class to relevant link
+                $('.sidebar-nav-item').removeClass('active');
+                $('[href="#' + section + '"]').addClass('active');
 
                 if(section.length){
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)

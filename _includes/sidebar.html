@@ -10,9 +10,18 @@
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="#about">About</a>
 
-      <a class="sidebar-nav-item active" href="#loopdigger">Loopdigger</a>
-      <a class="sidebar-nav-item active" href="#asteroids">Asteroids</a>
-      <a class="sidebar-nav-item active" href="#rails-lite">Rails Lite</a>
+      <a class="sidebar-nav-item">Projects</a>
+      <ul class="projects">
+        <li>
+          <a class="sidebar-nav-item" href="#loopdigger">Loopdigger</a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" href="#asteroids">Asteroids</a>
+        </li>
+        <li>
+          <a class="sidebar-nav-item" href="#rails-lite">Rails Lite</a>
+        </li>
+      </ul>
     </nav>
 
     <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
