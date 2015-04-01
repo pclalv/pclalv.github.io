@@ -1,0 +1,54 @@
+---
+layout: default
+title: About
+---
+
+<link rel="stylesheet" type="text/css" href="public/css/jquery.fullPage.css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="public/javascript/jquery.fullPage.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#fullpage').fullpage();
+  });
+</script>
+
+<div id="fullpage">
+
+    <div class="section" data-anchor="about">
+      <figure class="about">
+        My name is Paul Alvarez, and I'm a web developer based in New York City.
+      </figure>
+    </div>
+
+    <div class="section" data-anchor="loopdigger">
+      <h2>Loopdigger</h2>
+      <h3>
+        (<a href="http://loopdigger.net">live</a> || <a href="https://github.com/pclalv/loopdigger">github</a>)
+      </h3>
+
+      <figure>
+        Loopdigger is a SoundCloud-inspired music community built in Ruby on Rails and Backbone.js.
+      </figure>
+
+      <!-- screenshot of the feed -->
+      <img src="#" alt="" />
+    </div>
+
+    <div class="section" data-anchor="asteroids">
+      <h2>Asteroids</h2>
+      <h3>
+        (<a href="/asteroids">live</a> || <a href="https://github.com/pclalv/asteroids">github</a>)
+      </h3>
+    </div>
+
+    <div class="section" data-anchor="rails-lite">
+      <h2>Rails Lite</h2>
+      <h3>
+        (<a href="https://github.com/pclalv/Rails-Lite">github</a>)
+      </h3>
+    </div>
+
+</div>
