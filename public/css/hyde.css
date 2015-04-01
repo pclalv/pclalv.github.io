@@ -53,9 +53,14 @@ html {
   clear: both;
 }
 
+a {
+  transition: color, linear, 500ms;
+}
+
 a:hover {
   text-decoration: none;
   cursor: pointer;
+  color: #202020;
 }
 
 
@@ -86,7 +91,6 @@ a:hover {
 /* Sidebar links */
 .sidebar a {
   color: #fff;
-  transition: color, linear, 500ms;
 }
 
 /* About section */
