@@ -45,6 +45,11 @@ html {
   }
 }
 
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 /*
  * Sidebar
@@ -73,11 +78,7 @@ html {
 /* Sidebar links */
 .sidebar a {
   color: #fff;
-  transition: color, linear, 100ms;
-}
-
-.sidebar a:hover {
-  color: #202020;
+  transition: color, linear, 500ms;
 }
 
 /* About section */
@@ -98,10 +99,11 @@ html {
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
-  text-decoration: underline;
+  color: #202020;
 }
 .sidebar-nav-item.active {
   font-weight: bold;
+  color: #fff;
 }
 
 /* Sticky sidebar

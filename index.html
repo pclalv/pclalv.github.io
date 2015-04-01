@@ -11,7 +11,9 @@ title: About
 
 <script>
   $(document).ready(function() {
-    $('#fullpage').fullpage();
+    $('#fullpage').fullpage({
+      anchors: ['about', 'loopdigger', 'asteroids', 'rails-lite']
+    });
   });
 </script>
 
@@ -31,10 +33,10 @@ title: About
 
       <figure>
         Loopdigger is a SoundCloud-inspired music community built in Ruby on Rails and Backbone.js.
-      </figure>
 
-      <!-- screenshot of the feed -->
-      <img src="#" alt="" />
+        <!-- screenshot of the feed -->
+        <img src="#" alt="" />
+      </figure>
     </div>
 
     <div class="section" data-anchor="asteroids">
@@ -42,6 +44,11 @@ title: About
       <h3>
         (<a href="/asteroids">live</a> || <a href="https://github.com/pclalv/asteroids">github</a>)
       </h3>
+
+      <figure>
+        Description.
+        <img src="#" alt="" />
+      </figure>
     </div>
 
     <div class="section" data-anchor="rails-lite">
@@ -49,6 +56,11 @@ title: About
       <h3>
         (<a href="https://github.com/pclalv/Rails-Lite">github</a>)
       </h3>
+
+      <figure>
+        Description.
+        <img src="#" alt="" />
+      </figure>
     </div>
 
 </div>
