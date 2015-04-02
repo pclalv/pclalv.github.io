@@ -1792,7 +1792,8 @@
         * It changes the URL hash when needed and updates the body class.
         */
         function setState(slideIndex, slideAnchor, anchorLink, sectionIndex){
-            var sectionHash = '';
+            var anchorLinkIdx,
+                sectionHash = '';
 
             if(options.anchors.length){
 
@@ -1819,6 +1820,10 @@
                 //section without slides
                 else{
                     setUrlHash(anchorLink);
+                    anchorLinkIdx = options.anchors.indexOf(anchorLink)
+                    $('.sidebar').css(
+                      'background-color',
+                      options.sidebarColors[anchorLinkIdx]);
                 }
             }
 
