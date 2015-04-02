@@ -118,6 +118,10 @@ a.sidebar-nav-item:focus {
   color: #fff;
 }
 
+.projects {
+  margin-bottom: 0;
+}
+
 .project-header > h2 {
   float: left;
 }
@@ -154,7 +158,6 @@ label[for="projects"] {
  */
 
 .content {
-  padding-top:    4rem;
   padding-bottom: 4rem;
 }
 
