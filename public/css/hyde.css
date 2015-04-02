@@ -54,7 +54,7 @@ html {
 }
 
 a {
-  transition: color, linear, 500ms;
+  transition: color linear 250ms;
 }
 
 a:hover {
@@ -75,7 +75,7 @@ a:hover {
   text-align: center;
   padding: 2rem 1rem;
   color: rgba(255,255,255,.5);
-  background-color: #00ffa0;
+  background-color: #00ffff;
   transition: background-color, linear, 700ms;
 }
 @media (min-width: 48em) {
