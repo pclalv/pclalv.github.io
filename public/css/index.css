@@ -1,0 +1,6 @@
+.photo > img {
+  border-radius: 50%;
+  border: 3px solid #222;
+  overflow: hidden;
+  margin: 0 auto;
+}
