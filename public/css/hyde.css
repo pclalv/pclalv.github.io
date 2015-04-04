@@ -60,7 +60,7 @@ a {
 a:hover {
   text-decoration: none;
   cursor: pointer;
-  color: #202020;
+  color: #202020 !important;
 }
 
 
@@ -99,7 +99,9 @@ a:hover {
   color: #fff;
   margin-top: 0;
   font-family: "Abril Fatface", serif;
+  font-family: '8BITWONDERNominal';
   font-size: 3.25rem;
+  font-size: 2.35rem;
 }
 
 /* Sidebar nav */

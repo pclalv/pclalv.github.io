@@ -4,6 +4,7 @@ title: About
 ---
 
 <link rel="stylesheet" type="text/css" href="public/css/jquery.fullPage.css" />
+<link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/8bit-wonder" rel="stylesheet" type="text/css"/>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="public/javascript/jquery.fullPage.js"></script>
@@ -13,7 +14,9 @@ title: About
   $(document).ready(function() {
     $('#fullpage').fullpage({
       anchors: ['about', 'loopdigger', 'asteroids', 'rails-lite', 'contact'],
-      sidebarColors: ['#00FFFF', '#00FFA0', '#00FF41', '#00FEE2', '#00FE83']
+      sidebarColors: ['#00FFFF', '#00FFA0', '#00FF41', '#00FEE2', '#00FE83'],
+      fontColors: ['#00FFFF', '#00FFA0', '#00FF41', '#00FEE2', '#00FE83']
+
     });
   });
 </script>
@@ -41,7 +44,7 @@ title: About
           </strong>
         </p>
 
-        <p>
+        <p class="links">
           Below you'll find my programming portfolio; in addition to
           coding, I enjoy
           <a href="http://soundcloud.com/scaldingcoffee">music</a>,
@@ -57,7 +60,7 @@ title: About
 
       <section class="project-header group">
         <h2>Loopdigger</h2>
-        <h3>
+        <h3 class="links">
           (<a href="http://loopdigger.net">live</a> || <a href="https://github.com/pclalv/loopdigger">GitHub</a>)
         </h3>
       </section>
@@ -74,7 +77,7 @@ title: About
 
       <section class="project-header group">
         <h2>Bounceycastleroids</h2>
-        <h3>
+        <h3 class="links">
           (<a href="/asteroids">live</a> || <a href="https://github.com/pclalv/asteroids">GitHub</a>)
         </h3>
       </section>
@@ -91,7 +94,7 @@ title: About
 
       <section class="project-header group">
         <h2>Rails Lite</h2>
-        <h3>
+        <h3 class="links">
           (<a href="https://github.com/pclalv/Rails-Lite">GitHub</a>)
         </h3>
       </section>
@@ -105,7 +108,7 @@ title: About
     <article class="section" data-anchor="contact">
       <h2>Contact</h2>
 
-      <ul>
+      <ul class="links">
         <li><a href="mailto:#">email</a></li>
         <li><a href="http://github.com/pclalv">GitHub</a></li>
         <li><a href="http://linkedin.com/in/pclalv">LinkedIn</a></li>

@@ -9,3 +9,7 @@
   overflow: hidden;
   margin: 0 auto;
 }
+
+.links a {
+  font-weight:700;
+}

@@ -1824,6 +1824,9 @@
                     $('.sidebar').css(
                       'background-color',
                       options.sidebarColors[anchorLinkIdx]);
+                    $('.links a').css(
+                      'color',
+                      options.sidebarColors[anchorLinkIdx]);
                 }
             }
 
