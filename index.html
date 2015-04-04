@@ -7,6 +7,7 @@ title: About
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="public/javascript/jquery.fullPage.js"></script>
+<script src="public/javascript/pixelate.js"></script>
 
 <script>
   $(document).ready(function() {
@@ -21,8 +22,11 @@ title: About
 
     <article class="section" data-anchor="about">
       <section class="about">
-        <figure class="photo">
+        <!-- <figure class="photo">
           <img src="public/images/me.jpg" alt="me" />
+        </figure> -->
+        <figure class="photo pixelate">
+          <canvas id="canvas" width="300" height="300"></canvas>
         </figure>
 
         <p>
@@ -76,7 +80,7 @@ title: About
       </section>
 
       <section>
-        Bounceycastleroids is like Asteroids but with classic bouncey castle physics. 
+        Bounceycastleroids is like Asteroids but with classic bouncey castle physics.
       </section>
     </article>
 
