@@ -12,10 +12,13 @@ title: Paul Alvarez
 
 <script>
   $(document).ready(function() {
-    if (screen.width >= 770) {
-      $('#fullpage').fullpage({
+    $('#fullpage').fullpage({
         anchors: ['about', 'loopdigger', 'asteroids', 'rails-lite', 'contact'],
         sidebarColors: ['#00FFFF', '#00FFA0', '#00FF41', '#00FEE2', '#00FE83']});
+
+    if (screen.width > 770) {
+      $.fn.fullpage.setAllowScrolling(false)
+      $.fn.fullpage.setKeyboardScrolling(false);
     }
   });
 </script>
