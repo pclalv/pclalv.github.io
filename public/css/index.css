@@ -14,3 +14,7 @@
   color: #00FFFF;
   font-weight: 700;
 }
+
+.title {
+  text-shadow: -4px 5px black;
+}
