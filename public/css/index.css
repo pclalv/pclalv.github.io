@@ -18,3 +18,8 @@
 .title {
   text-shadow: -4px 5px black;
 }
+
+.error {
+  vertical-align: middle;
+  height: auto;
+}
