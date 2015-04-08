@@ -54,7 +54,7 @@ html {
 }
 
 a {
-  transition: color linear 250ms;
+  transition: color linear 250ms, text-shadow linear 250ms;
 }
 
 a:hover {
@@ -116,7 +116,7 @@ a.sidebar-nav-item:focus {
 }
 .sidebar-nav-item.active {
   font-weight: bold;
-  color: #fff;
+  color: #222;
 }
 
 .projects {

@@ -19,8 +19,28 @@
   text-shadow: -4px 5px black;
 }
 
+.title:hover,
+.title:focus {
+  text-shadow: -4px 5px white;
+}
+
+.title > .active {
+  color: #222;
+  text-shadow: -4px 5px white;
+}
+
 .sidebar-nav-item[href="paul-alvarez.pdf"] {
   margin-top: 1rem;
+}
+
+.resume {
+  display: none;
+}
+
+@media (max-width: 770) {
+  .resume {
+    display: block
+  }
 }
 
 .error {
