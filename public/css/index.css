@@ -37,7 +37,7 @@
   display: none;
 }
 
-@media (max-width: 770) {
+@media (max-width: 770px) {
   .resume {
     display: block
   }
