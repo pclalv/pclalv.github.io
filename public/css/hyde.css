@@ -73,7 +73,7 @@ a:focus {
  */
 
 .sidebar {
-  text-align: center;
+  text-align: left;
   padding: 2rem 1rem;
   color: rgba(255,255,255,.5);
   background-color: #00ffff;
