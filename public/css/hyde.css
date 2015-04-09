@@ -57,7 +57,8 @@ a {
   transition: color linear 250ms, text-shadow linear 250ms;
 }
 
-a:hover {
+a:hover,
+a:focus {
   text-decoration: none;
   cursor: pointer;
   color: #202020 !important;
