@@ -1819,6 +1819,7 @@
 
                 //section without slides
                 else{
+                    document.activeElement.blur();
                     setUrlHash(anchorLink);
                     anchorLinkIdx = options.anchors.indexOf(anchorLink)
                     $('.sidebar').css(
