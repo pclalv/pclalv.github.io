@@ -60,42 +60,43 @@
     var my = this;
 
     this.canvas.addEventListener("mouseenter", function (event) {
-      // if (my.transitioning) return;
-      // my.transitioning = true;
       my.stepCount = 0;
 
-      var interval = setInterval(function () {
+      my.enterInterval = setInterval(function () {
         my.step(function (pixel, pixelIdx, color) {
           return pixel + my.transitionStep[pixelIdx + color];
         });
 
+        my.stepCount++;
+
         if (my.stepCount >= my.steps) {
-          clearInterval(interval)
+          clearInterval(my.enterInterval)
           my.transitioning = false;
         }
       }, my.timeout);
     });
 
     this.canvas.addEventListener("mouseleave", function (event) {
-      // if (my.transitioning) return;
-      // my.transitioning = true;
-      my.stepCount = 0;
+      if (my.enterInterval) {
+        clearInterval(my.enterInterval);
 
-      var interval = setInterval(function () {
-        my.step(function (pixel, pixelIdx, color) {
-          return pixel - my.transitionStep[pixelIdx + color];
-        });
+        var interval = setInterval(function () {
+          my.step(function (pixel, pixelIdx, color) {
+            return pixel - my.transitionStep[pixelIdx + color];
+          });
 
-        if (my.stepCount >= my.steps) {
-          clearInterval(interval)
-          my.transitioning = false;
-        }
-      }, my.timeout);
+          my.stepCount--;
+
+          if (!my.stepCount) {
+            clearInterval(interval);
+            my.transitioning = false;
+          }
+        }, my.timeout);
+      }
     });
   };
 
   $.Pixelate.prototype.step = function (callback) {
-    console.log("step");
     var pixelIdx, color, pixel,
         imgPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height),
         imgData = imgPixels.data;
@@ -107,7 +108,6 @@
       }
     }
     this.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-    this.stepCount++;
   };
 
   $.fn.pixelate = function () {
