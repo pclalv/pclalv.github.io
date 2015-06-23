@@ -7,7 +7,7 @@
     var my = this;
 
     this.stepSize = 10;
-    this.delay = 5000;
+    this.timeout = 500;
     this.transitionStep = [];
 
     this.scale = 1/6;
@@ -61,22 +61,8 @@
     var my = this;
 
     this.canvas.addEventListener("mouseenter", function (event) {
-      var x, y, step, i, j, avg,
-          imgPixels = my.ctx.getImageData(0, 0, my.canvas.width, my.canvas.height),
-          imgData = imgPixels.data;
-
-      if (my.transitioning) return nil;
-
+      if (my.transitioning) return;
       my.transitioning = true;
-
-      // for (step = 0; step < my.stepSize; step++) {
-      //   for (i = 0; i < imgData.length; i += 4) {
-      //     for (j = 0; j <= 2; j++) {
-      //       imgPixels.data[i + j] = imgPixels.data[i + j] + my.transitionStep[i + j];
-      //     }
-      //   }
-      //   my.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-      // }
 
       my.eachRGB(function (pixel, pixelIdx, rgb) {
         return pixel + my.transitionStep[pixelIdx + rgb];
@@ -84,22 +70,8 @@
     });
 
     this.canvas.addEventListener("mouseleave", function (event) {
-      var step, i, j, avg, roundedAvg,
-          imgPixels = my.ctx.getImageData(0, 0, my.canvas.width, my.canvas.height),
-          imgData = imgPixels.data;
-
-      if (my.transitioning) return nil;
-
+      if (my.transitioning) return;
       my.transitioning = true;
-
-      // for (step = 0; step < my.stepSize; step++) {
-      //   for (i = 0; i < imgData.length; i += 4) {
-      //     for (j = 0; j <= 2; j++) {
-      //       imgPixels.data[i + j] = imgPixels.data[i + j] - my.transitionStep[i + j];
-      //     }
-      //   }
-      //   my.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-      // }
 
       my.eachRGB(function (pixel, pixelIdx, rgb) {
         return pixel - my.transitionStep[pixelIdx + rgb];
@@ -122,15 +94,11 @@
           }
         }
         my.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-      }, 1000);
+      }, my.timeout);
     }
 
     my.transitioning = false;
   };
-
-  $.Pixelate.prototype.step = function (callback) {
-
-  }
 
   $.fn.pixelate = function () {
     return this.each(function () {
