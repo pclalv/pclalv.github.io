@@ -6,7 +6,7 @@
   $.Pixelate = function (options) {
     var my = this;
 
-    this.stepSize = 16;
+    this.stepSize = 1;
     this.transitionStep = [];
 
     this.scale = 1/6;
@@ -35,51 +35,60 @@
     var x, y, i, j, avg, roundedAvg;
 
     var imgPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-    for (y = 0; y < imgPixels.height; y++) {
-      for (x = 0; x < imgPixels.width; x++) {
-        i = (y * 4) * imgPixels.width + x * 4;
-        avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-        roundedAvg = Math.floor(avg/16) * 16;
+    // for (y = 0; y < imgPixels.height; y++) {
+    //   for (x = 0; x < imgPixels.width; x++) {
+    //     i = (y * 4) * imgPixels.width + x * 4;
+    //     avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+    //     roundedAvg = Math.floor(avg/16) * 16;
+    //
+    //     for (j = 0; j <= 2; j++) {
+    //       // to transition we need to store an amount to increment by evenly at each step
+    //       this.transitionStep[i + j] = ((imgPixels.data[i + j] - roundedAvg)/this.stepSize);
+    //
+    //       // setting the image to sixteen grayscale
+    //       imgPixels.data[i + j] = roundedAvg;
+    //     }
+    //   }
+    // }
 
-        for (j = 0; j <= 2; j++) {
-          // to transition we need to store an amount to increment by evenly at each step
-          this.transitionStep[i + j] = (imgPixels.data[i + j] - roundedAvg)/this.stepSize;
+    var imgData = imgPixels.data;
+    for (i = 0; i < imgData.length; i += 4) {
+      avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+      roundedAvg = Math.floor(avg/16) * 16;
 
-          // setting the image to sixteen grayscale
-          imgPixels.data[i + j] = roundedAvg;
-        }
+      for (j = 0; j <= 2; j++) {
+        // to transition we need to store an amount to increment by evenly at each step
+        this.transitionStep[i + j] = ((imgPixels.data[i + j] - roundedAvg)/this.stepSize);
+
+        // setting the image to sixteen grayscale
+        imgPixels.data[i + j] = roundedAvg;
       }
     }
+
 
     this.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
   };
 
   $.Pixelate.prototype.bindEvents = function () {
-    var x, y, i, j, avg, roundedAvg,
+    var x, y, step, i, j, avg,
         my = this;
 
     this.canvas.addEventListener("mouseenter", function (event) {
-      my.ctx.drawImage(my.img, 0, 0, my.scaledWidth, my.scaledHeight);
-      my.ctx.drawImage(my.canvas, 0, 0, my.scaledWidth, my.scaledHeight, 0, 0, my.canvas.width, my.canvas.height);
-
       var imgPixels = my.ctx.getImageData(0, 0, my.canvas.width, my.canvas.height);
-      for (y = 0; y < imgPixels.height; y++) {
-        for (x = 0; x < imgPixels.width; x++) {
-          i = (y * 4) * imgPixels.width + x * 4;
-          avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-          roundedAvg = Math.floor(avg/16) * 16;
+      for (step = 0; step < my.stepSize; step++) {
+        console.log('step');
+        for (y = 0; y < imgPixels.height; y++) {
+          for (x = 0; x < imgPixels.width; x++) {
+            i = (y * 4) * imgPixels.width + x * 4;
 
-          for (j = 0; j <= 2; j++) {
-            // to transition we need to store an amount to increment by evenly at each step
-            my.transitionStep[i + j] = (imgPixels.data[i + j] - roundedAvg)/my.stepSize;
+            for (j = 0; j <= 2; j++) {
+              imgPixels.data[i + j] = imgPixels.data[i + j] + my.transitionStep[i + j];
+            }
 
-            // setting the image to sixteen grayscale
-            imgPixels.data[i + j] = roundedAvg;
           }
         }
+        my.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
       }
-
-      my.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
     });
   };
 
