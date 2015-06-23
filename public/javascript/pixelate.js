@@ -6,8 +6,8 @@
   $.Pixelate = function (options) {
     var my = this;
 
-    this.stepSize = 10;
-    this.timeout = 500;
+    this.steps = 10;
+    this.timeout = 75;
     this.transitionStep = [];
 
     this.scale = 1/6;
@@ -46,13 +46,12 @@
 
       for (j = 0; j <= 2; j++) {
         // to transition we need to store an amount to increment by evenly at each step
-        this.transitionStep[i + j] = ((this.originalImageData[i + j] - roundedAvg)/this.stepSize);
+        this.transitionStep[i + j] = ((this.originalImageData[i + j] - roundedAvg)/this.steps);
 
         // setting the image to sixteen grayscale
         imgData[i + j] = roundedAvg;
       }
     }
-
 
     this.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
   };
@@ -61,43 +60,54 @@
     var my = this;
 
     this.canvas.addEventListener("mouseenter", function (event) {
-      if (my.transitioning) return;
-      my.transitioning = true;
+      // if (my.transitioning) return;
+      // my.transitioning = true;
+      my.stepCount = 0;
 
-      my.eachRGB(function (pixel, pixelIdx, rgb) {
-        return pixel + my.transitionStep[pixelIdx + rgb];
-      });
+      var interval = setInterval(function () {
+        my.step(function (pixel, pixelIdx, color) {
+          return pixel + my.transitionStep[pixelIdx + color];
+        });
+
+        if (my.stepCount >= my.steps) {
+          clearInterval(interval)
+          my.transitioning = false;
+        }
+      }, my.timeout);
     });
 
     this.canvas.addEventListener("mouseleave", function (event) {
-      if (my.transitioning) return;
-      my.transitioning = true;
+      // if (my.transitioning) return;
+      // my.transitioning = true;
+      my.stepCount = 0;
 
-      my.eachRGB(function (pixel, pixelIdx, rgb) {
-        return pixel - my.transitionStep[pixelIdx + rgb];
-      });
+      var interval = setInterval(function () {
+        my.step(function (pixel, pixelIdx, color) {
+          return pixel - my.transitionStep[pixelIdx + color];
+        });
+
+        if (my.stepCount >= my.steps) {
+          clearInterval(interval)
+          my.transitioning = false;
+        }
+      }, my.timeout);
     });
   };
 
-  $.Pixelate.prototype.eachRGB = function (callback) {
-    var step, pixelIdx, color, avg, roundedAvg, pixel,
+  $.Pixelate.prototype.step = function (callback) {
+    console.log("step");
+    var pixelIdx, color, pixel,
         imgPixels = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height),
-        imgData = imgPixels.data,
-        my = this;
+        imgData = imgPixels.data;
 
-    for (step = 0; step < this.stepSize; step++) {
-      setTimeout(function () {
-        for (pixelIdx = 0; pixelIdx < imgData.length; pixelIdx += 4) {
-          for (color = 0; color <= 2; color++) {
-            pixel = imgPixels.data[pixelIdx + color];
-            imgPixels.data[pixelIdx + color] = callback(pixel, pixelIdx, color);
-          }
-        }
-        my.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-      }, my.timeout);
+    for (pixelIdx = 0; pixelIdx < imgData.length; pixelIdx += 4) {
+      for (color = 0; color <= 2; color++) {
+        pixel = imgPixels.data[pixelIdx + color];
+        imgPixels.data[pixelIdx + color] = callback(pixel, pixelIdx, color);
+      }
     }
-
-    my.transitioning = false;
+    this.ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+    this.stepCount++;
   };
 
   $.fn.pixelate = function () {
