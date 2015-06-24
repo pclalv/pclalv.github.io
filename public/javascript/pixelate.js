@@ -74,12 +74,12 @@
       my.stepCount = 0;
 
       my.enterInterval = setInterval(function () {
-        my.stepCount++;
-
         console.log('enter step', my.stepCount);
         my.eachPixel(function (pixel, pixelIdx, color) {
           return pixel + my.transitionStep[pixelIdx + color];
         });
+
+        my.stepCount++;
 
         if (my.stepCount >= my.steps) {
           clearInterval(my.enterInterval)
