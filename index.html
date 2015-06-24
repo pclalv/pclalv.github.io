@@ -3,32 +3,6 @@ layout: default
 title: Paul Alvarez
 ---
 
-<link rel="stylesheet" type="text/css" href="public/css/jquery.fullPage.css" />
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="public/javascript/jquery.fullPage.js"></script>
-<script src="public/javascript/pixelate.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('#fullpage').fullpage({
-        anchors: ['about', 'loopdigger', 'bouncycastleroids', 'rails-lite', 'contact'],
-        sidebarColors: ['#00FFFF', '#00FFA0', '#00FF41', '#00FEE2', '#00FE83'],
-        fixedElements: '.sidebar'});
-    if (screen.width <= 770) {
-      var canvas = document.getElementById('canvas');
-
-      canvas.style.width  = '75%';
-      canvas.style.height = '75%';
-
-      $.fn.fullpage.setAllowScrolling(false);
-      $.fn.fullpage.setKeyboardScrolling(false);
-      $.fn.fullpage.setAutoScrolling(false);
-      $.fn.fullpage.setFitToSection(false);
-    }
-  });
-</script>
-
 <main id="fullpage">
 
     <article class="section" data-anchor="about">
