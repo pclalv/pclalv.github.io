@@ -68,35 +68,37 @@
   };
 
   $.Pixelate.prototype.bindEvents = function () {
-    var my = this;
+    var mouseenter, mouseleave,
+        my = this;
 
-    this.canvas.addEventListener("mouseenter", function (event) {
-      my.stepCount = 0;
+    mouseenterCallback = function (event) {
+      if (!my.enterInterval) {
+        my.stepCount = 0;
 
-      my.enterInterval = setInterval(function () {
-        console.log('enter step', my.stepCount);
-        my.eachPixel(function (pixel, pixelIdx, color) {
-          return pixel + my.transitionStep[pixelIdx + color];
-        });
+        my.enterInterval = setInterval(function () {
+          my.eachPixel(function (pixel, pixelIdx, color) {
+            return pixel + my.transitionStep[pixelIdx + color];
+          });
 
-        my.stepCount++;
+          my.stepCount++;
 
-        if (my.stepCount >= my.steps) {
-          clearInterval(my.enterInterval)
-          my.transitioning = false;
-        }
-      }, my.timeout);
-    });
+          if (my.stepCount >= my.steps) {
+            clearInterval(my.enterInterval)
+            my.transitioning = false;
+          }
+        }, my.timeout);
+      }
+    }
 
-    this.canvas.addEventListener("mouseleave", function (event) {
-      if (my.enterInterval) {
+    mouseleaveCallback = function (event) {
+      if (my.enterInterval && !my.leaveInterval) {
         clearInterval(my.enterInterval);
         my.enterInterval = 0;
 
-        var interval = setInterval(function () {
-          console.log('leave step', my.stepCount);
+        my.leaveInterval = setInterval(function () {
           if (!my.stepCount) {
-            clearInterval(interval);
+            clearInterval(my.leaveInterval);
+            my.leaveInterval = 0;
             my.transitioning = false;
             return;
           }
@@ -108,7 +110,10 @@
           my.stepCount--;
         }, my.timeout);
       }
-    });
+    }
+
+    this.canvas.addEventListener("mouseenter", mouseenterCallback);
+    this.canvas.addEventListener("mouseleave", mouseleaveCallback);
   };
 
   $.fn.pixelate = function () {
