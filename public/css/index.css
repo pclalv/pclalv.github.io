@@ -33,6 +33,8 @@
   margin-top: 1rem;
 }
 
+/* Hide resume blurb except for mobile browsing. */
+
 .resume {
   display: none;
 }
